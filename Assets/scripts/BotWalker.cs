@@ -26,16 +26,18 @@ public class BotWalker: MonoBehaviour {
 
     void BotWalk()
     {
-        Vector3 targetPosition = waypointPositions[currentwayPoint];
-        targetPositionDelta = targetPosition - transform.position;
+        Vector3 targetPosition = waypointPositions[currentwayPoint];    //Setze nächsten Wegpunkt
+        targetPositionDelta = targetPosition - transform.position;      //"Legt" die Richtung fest 
 
-        if (targetPositionDelta.sqrMagnitude <= 1)
+        if (targetPositionDelta.sqrMagnitude <= 1)      //Wenn der Bot nahe am Wegpunkt ist
         {
+            //nächster Wegpunkt bzw. von vorne 
             currentwayPoint++;
             if (currentwayPoint >= waypointPositions.Count) currentwayPoint = 0;
         }
         else
         {
+            //Blickrichtung
             if (targetPositionDelta.x > 0) lookRight = true;
             else lookRight = false;
 
@@ -44,11 +46,12 @@ public class BotWalker: MonoBehaviour {
     }
     void Moving()
     {
-        moveDirection = targetPositionDelta.normalized * speed;
-        transform.Translate(moveDirection * Time.deltaTime, Space.World);
+        moveDirection = targetPositionDelta.normalized * speed;             //Gleichbleibende Geschwindigkeit
+        transform.Translate(moveDirection * Time.deltaTime, Space.World);   //neue Pos setzen
     }
     void SetAnimation()
     {
+        //Animation setzen
         if(lookRight) playerAnimations.currAnimation = PlayerAnimations.AniType.runRight;
         else playerAnimations.currAnimation = PlayerAnimations.AniType.runLeft;
     }

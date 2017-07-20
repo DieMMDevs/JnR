@@ -31,30 +31,32 @@ public class PlayerAnimations : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //Auswahl der Animation
         switch (currAnimation) {
             case AniType.idleLeft:
-                setAnimation(idleAnimationLeft);
+                SetAnimation(idleAnimationLeft);
                 break;
             case AniType.idleRight:
-                setAnimation(idleAnimationRight);
+                SetAnimation(idleAnimationRight);
                 break;
             case AniType.runLeft:
-                setAnimation(runAnimationLeft);
+                SetAnimation(runAnimationLeft);
                 break;
             case AniType.runRight:
-                setAnimation(runAnimationRight);
+                SetAnimation(runAnimationRight);
                 break;
             case AniType.jumpLeft:
-                setAnimation(jumpAnimationLeft);
+                SetAnimation(jumpAnimationLeft);
                 break;
             case AniType.jumpRight:
-                setAnimation(jumpAnimationRight);
+                SetAnimation(jumpAnimationRight);
                 break;
         }
 	}
 
-    void setAnimation(List<Texture2D> listAnimations)
+    void SetAnimation(List<Texture2D> listAnimations)
     {
+        //Berechnung des Bildes
         Renderer rend = GetComponent<Renderer>();
         int index = (int)(Time.time * speed);
         index %= listAnimations.Count;

@@ -39,9 +39,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Input()
     {
-        velocity = UnityEngine.Input.GetAxis("Horizontal") * speed;
+        velocity = UnityEngine.Input.GetAxis("Horizontal") * speed; //Richtung und Geschwindigkeit 
 
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Space))    //Sprungtaste gedrückt?     
             jump = true;
         else
             jump = false;
@@ -49,21 +49,25 @@ public class PlayerMovement : MonoBehaviour
 
     public void Moving()
     {
-        if (characterController.isGrounded) doublejump = true;
-        if (characterController.isGrounded || doublejump)
+        if (characterController.isGrounded) doublejump = true;  //Setzt doubleJump zurück 
+        if (characterController.isGrounded || doublejump)   //Vorraussetzungen zum Sprung erfüllt?
         {
+            //"normaler" Sprung
             if (jump && characterController.isGrounded)
             {
                 moveDirection.y = jumpFactor * Time.deltaTime;
             }
+            //doubleJump Sprung
             if(jump && doublejump && !characterController.isGrounded)
             {
                 moveDirection.y = jumpFactor * Time.deltaTime;
                 doublejump = false;
             }
         }
+        //Nur wenn der Player in der Luft ist soll gravity gelten
         if(!characterController.isGrounded) moveDirection.y -= gravity * Time.deltaTime;
-        moveDirection.x = velocity * Time.deltaTime;
+        moveDirection.x = velocity * Time.deltaTime;    //Player bewegung
+        //Blickrichtung
         if (velocity > 0)
             lookRight = true;
         else if (velocity < 0)
@@ -74,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetAnimation()
     {
-        
+        //Laufrichtungs-Animation setzten und im Inneren Jump-Animation abfrage
         if (velocity > 0)
         {
             playerAnimations.currAnimation = PlayerAnimations.AniType.runRight;
@@ -87,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
             if (!characterController.isGrounded)
                 playerAnimations.currAnimation = PlayerAnimations.AniType.jumpLeft;
         }
+        //Blickrichtungs-Animation setzten und im Inneren Jump-Animation abfrage
         if (velocity == 0)
         {
             if (lookRight)
