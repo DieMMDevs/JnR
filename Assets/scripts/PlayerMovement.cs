@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     private int count;
     public Text countText;
 
-    public Vector3 moveDirection = Vector3.zero;
-    public CharacterController characterController;
-    public PlayerAnimations playerAnimations;
+    Vector3 moveDirection = Vector3.zero;
+    CharacterController characterController;
+    PlayerAnimations playerAnimations;
 
     // Use this for initialization
     void Start()
@@ -110,6 +110,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Trap"))
+        {
+            other.attachedRigidbody.useGravity = true;
+        }
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
