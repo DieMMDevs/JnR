@@ -8,7 +8,7 @@ public class HealthController : MonoBehaviour
 {
     public float health = 10;
     public int life = 3;
-    public float seconds = 1;
+    public float seconds = 0.04f;
 
     public Text showHealth;
 
@@ -61,12 +61,11 @@ public class HealthController : MonoBehaviour
         rend.enabled = false;
         yield return new WaitForSeconds(seconds);
         rend.enabled = true;
+        yield return new WaitForSeconds(seconds);
         rend.enabled = false;
         yield return new WaitForSeconds(seconds);
         rend.enabled = true;
-        rend.enabled = false;
         yield return new WaitForSeconds(seconds);
-        rend.enabled = true;
         rend.enabled = false;
         yield return new WaitForSeconds(seconds);
         rend.enabled = true;
