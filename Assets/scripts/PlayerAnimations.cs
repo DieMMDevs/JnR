@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour {
+
     public List<Texture2D> idleAnimationRight;
     public List<Texture2D> idleAnimationLeft;
     public List<Texture2D> runAnimationRight;

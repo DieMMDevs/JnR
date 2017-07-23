@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BotWalker: MonoBehaviour {
 
-    public float speed = 4;
-    public List<Vector3> waypointPositions;
-    int currentwayPoint = 0;
     bool lookRight = true;
+
+    public float speed = 4;
+    int currentwayPoint = 0;
+
     Vector3 targetPositionDelta;
     Vector3 moveDirection = Vector3.zero;
+
+    public List<Vector3> waypointPositions;
     public PlayerAnimations playerAnimations;
 
     // Use this for initialization

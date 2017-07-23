@@ -5,16 +5,19 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float gravity = 1;
-    float velocity;
-    public float speed = 5;
     bool lookRight = true;
     bool jump = false;
     bool doublejump = true;
-    public float jumpFactor = 20;
 
+    float velocity;
+    public float gravity = 1;
+    public float speed = 5;
+    public float jumpFactor = 20;
     private int count;
+
     public Text countText;
+
+    public GameObject otherGameObject;
 
     Vector3 moveDirection = Vector3.zero;
     CharacterController characterController;
@@ -22,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {
+    { 
         characterController = GetComponent<CharacterController>();
         playerAnimations = GetComponent<PlayerAnimations>();
         count = 0;
@@ -112,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Trap"))
         {
-            other.attachedRigidbody.useGravity = true;
+            otherGameObject.SetActive(true);
         }
         if (other.gameObject.CompareTag("PickUp"))
         {
