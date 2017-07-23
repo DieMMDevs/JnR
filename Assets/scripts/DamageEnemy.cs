@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DamageEnemy : MonoBehaviour
 {
-    public GameObject playerObject;
     public float damagevalue = 1;
 
     public string tags = "Player";
 
-    public HealthController healthcontroller;
+    GameObject playerObject;
+    HealthController healthcontroller;
 
     // Use this for initialization
     void Start()

@@ -8,7 +8,11 @@ public class HealthController : MonoBehaviour
 {
     public float health = 10;
     public int life = 3;
+<<<<<<< HEAD
     public float seconds = 0.05f;
+=======
+    public float seconds = 0.04f;
+>>>>>>> ac3763f32702c0e87f719c41994c39b7742aeefa
 
     public Text showHealth;
 
@@ -58,6 +62,7 @@ public class HealthController : MonoBehaviour
     IEnumerator DamageEffect()
     {
         Renderer rend = GetComponent<Renderer>();
+<<<<<<< HEAD
         for (int i = 8; i > 0; i--)
         {
             rend.enabled = false;
@@ -65,6 +70,19 @@ public class HealthController : MonoBehaviour
             rend.enabled = true;
             yield return new WaitForSeconds(seconds);
         }
+=======
+        rend.enabled = false;
+        yield return new WaitForSeconds(seconds);
+        rend.enabled = true;
+        yield return new WaitForSeconds(seconds);
+        rend.enabled = false;
+        yield return new WaitForSeconds(seconds);
+        rend.enabled = true;
+        yield return new WaitForSeconds(seconds);
+        rend.enabled = false;
+        yield return new WaitForSeconds(seconds);
+        rend.enabled = true;
+>>>>>>> ac3763f32702c0e87f719c41994c39b7742aeefa
     }
 
     void ShowHealth()
