@@ -1535,6 +1535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 814056dcd66814d498d4f681ad6b349c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
   damagevalue: 1
   tags: Player
   healthcontroller: {fileID: 0}
@@ -1735,7 +1736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   life: 3
-  seconds: 1
+  seconds: 0.25
   showHealth: {fileID: 1048737945}
 --- !u!1001 &2069838087
 Prefab:
