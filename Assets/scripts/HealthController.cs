@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
     public float health = 10;
     public int life = 3;
     public float seconds = 1;
+
+    public Text showHealth;
 
     // Use this for initialization
     void Start()
@@ -26,6 +29,7 @@ public class HealthController : MonoBehaviour
         if (health > 0)
         {
             health -= damage;
+            ShowHealth();
             if (health <= 0)
             {
                 if (life > 0)
@@ -66,5 +70,10 @@ public class HealthController : MonoBehaviour
         rend.enabled = false;
         yield return new WaitForSeconds(seconds);
         rend.enabled = true;
+    }
+
+    void ShowHealth()
+    {
+        showHealth.text = "Leben: " + health;
     }
 }

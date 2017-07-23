@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageEnemy : MonoBehaviour
 {
     public float damagevalue = 1;
+
     public string tags = "Player";
 
     public HealthController healthcontroller;
