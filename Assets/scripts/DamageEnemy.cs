@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamageEnemy : MonoBehaviour
 {
+    public GameObject playerObject;
     public float damagevalue = 1;
     public string tags = "Player";
 
@@ -12,7 +13,8 @@ public class DamageEnemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        healthcontroller = GetComponent<HealthController>();
+        playerObject = GameObject.Find("Player");
+        healthcontroller = playerObject.GetComponent<HealthController>();
     }
 
     private void OnTriggerEnter(Collider other)
