@@ -15,7 +15,7 @@ public class HealthController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        ShowHealth();
     }
 
     // Update is called once per frame
@@ -48,9 +48,10 @@ public class HealthController : MonoBehaviour
 
     void RestartLevel()
     {
-        //Application.LoadLevel(Application.loadedLevel);
+        Application.LoadLevel(Application.loadedLevel); //Wir nehmen ersmal das hier -> Licht geht nicht aus beim Restart
 
-        SceneManager.LoadScene("main", LoadSceneMode.Single);
+        //SceneManager.LoadScene("main", LoadSceneMode.Single);
+
 
         //UnityEngine.SceneManagement.SceneManager.LoadScene();
     }
@@ -58,14 +59,14 @@ public class HealthController : MonoBehaviour
     IEnumerator DamageEffect()
     {
         Renderer rend = GetComponent<Renderer>();
-        for (int i = 8; i > 0; i--)
+        for (int i = 4; i > 0; i--)
         {
             rend.enabled = false;
             yield return new WaitForSeconds(seconds);
             rend.enabled = true;
             yield return new WaitForSeconds(seconds);
         }
-
+        /*
         rend.enabled = false;
         yield return new WaitForSeconds(seconds);
         rend.enabled = true;
@@ -76,7 +77,8 @@ public class HealthController : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         rend.enabled = false;
         yield return new WaitForSeconds(seconds);
-        rend.enabled = true;
+        rend.enabled = true; 
+        */
     }
 
     void ShowHealth()
