@@ -1396,8 +1396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08762a059ffbd9743bee034a09f0038e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 1
-  seconds: 1
+  gravity: 2
 --- !u!23 &1658901661
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1951,7 +1950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d820b072409fb42b01481881823867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 1000
   seconds: 0.25
   life: 3
   showHealth: {fileID: 1694015362}
