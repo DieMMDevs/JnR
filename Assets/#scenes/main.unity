@@ -1370,6 +1370,7 @@ Transform:
   m_PrefabParentObject: {fileID: 4700218970856576, guid: 75ff0b8fce290cb4cab72d3234202faf,
     type: 2}
   m_PrefabInternal: {fileID: 190581243}
+<<<<<<< HEAD
 --- !u!1001 &1574452050
 Prefab:
   m_ObjectHideFlags: 0
@@ -1412,6 +1413,118 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a4aed14684ab304e8624212bd893311, type: 2}
   m_IsPrefabParent: 0
+=======
+--- !u!1 &1658901659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1658901664}
+  - component: {fileID: 1658901663}
+  - component: {fileID: 1658901662}
+  - component: {fileID: 1658901661}
+  - component: {fileID: 1658901660}
+  - component: {fileID: 1658901665}
+  m_Layer: 0
+  m_Name: Trap
+  m_TagString: Trap
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1658901660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1658901659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08762a059ffbd9743bee034a09f0038e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: 1
+  seconds: 1
+--- !u!23 &1658901661
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1658901659}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &1658901662
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1658901659}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1658901663
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1658901659}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1658901664
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1658901659}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.14, y: 1.4, z: 0}
+  m_LocalScale: {x: 1, y: 1.8807095, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1658901665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1658901659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814056dcd66814d498d4f681ad6b349c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagevalue: 1
+  tags: Player
+>>>>>>> c33a354881b234866189f87bc070fd0b202874b7
 --- !u!1 &1694015360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,8 +1967,15 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 248ffc023d368c046a11b843c055d4b6, type: 3}
   jumpAnimationLeft:
   - {fileID: 2800000, guid: 8f7777be80c5d1a4d8bd9fc615f7732b, type: 3}
+<<<<<<< HEAD
   attackAnimationRight: []
   attackAnimationLeft: []
+=======
+  attackAnimationRight:
+  - {fileID: 2800000, guid: e9df960f47effbf4583a0ad60d86f105, type: 3}
+  attackAnimationLeft:
+  - {fileID: 2800000, guid: 59959a9421763ae4e8db84ca3ee05dc5, type: 3}
+>>>>>>> c33a354881b234866189f87bc070fd0b202874b7
   speed: 10
   currAnimation: 1
 --- !u!143 &2057570031
