@@ -23,12 +23,14 @@ public class PlayerMovement : MonoBehaviour
     public GameObject otherGameObject;
 
     Vector3 moveDirection = Vector3.zero;
+    HealthController healthController;
     CharacterController characterController;
     PlayerAnimations playerAnimations;
 
     // Use this for initialization
     void Start()
-    { 
+    {
+        healthController = GetComponent<HealthController>();
         characterController = GetComponent<CharacterController>();
         playerAnimations = GetComponent<PlayerAnimations>();
         count = 0;
@@ -147,6 +149,11 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.gameObject.CompareTag("PickUp"))
         {
+            if (healthController.currentHealth < healthController.maxHealth)
+            {
+                healthController.currentHealth++;
+                healthController.ShowHealth();
+            }
             other.gameObject.SetActive(false);
             count++;
             SetCountText();
