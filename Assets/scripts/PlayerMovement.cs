@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     bool attackR = false;
     bool attackL = false;
 
+    float waitSecounds = 0.25f;
     float velocity;
     public float gravity = 1;
     public float speed = 5;
@@ -91,6 +92,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetAnimation()
     {
+        //Attack animation
+        if (attackR)
+        {
+            Debug.Log("ATTACK-RIGHT");
+            playerAnimations.currAnimation = PlayerAnimations.AniType.attackRight;
+            playerAnimations.speed = 0;
+            StartCoroutine(WaitSecounds());
+        }
+        if (attackL)
+        {
+            Debug.Log("ATTACK-Left");
+            playerAnimations.currAnimation = PlayerAnimations.AniType.attackLeft;
+            playerAnimations.speed = 0;
+            StartCoroutine(WaitSecounds());
+        }
+
         //Laufrichtungs-Animation setzten und im Inneren Jump-Animation abfrage
         if (velocity > 0)
         {
@@ -119,6 +136,11 @@ public class PlayerMovement : MonoBehaviour
             } 
         }
         
+    }
+    IEnumerator WaitSecounds()
+    {
+        yield return new WaitForSeconds(waitSecounds);
+        playerAnimations.speed = 10;
     }
 
     private void OnTriggerEnter(Collider other)
