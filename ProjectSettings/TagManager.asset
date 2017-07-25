@@ -7,6 +7,8 @@ TagManager:
   - PickUp
   - 1
   - Trap
+  - Enemy
+  - Attack
   layers:
   - Default
   - TransparentFX

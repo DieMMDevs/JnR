@@ -26,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     HealthController healthController;
     CharacterController characterController;
     PlayerAnimations playerAnimations;
-
+    GameObject attack;
+    Vector3 attackposition = Vector3.zero;
     // Use this for initialization
     void Start()
     {
@@ -35,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
         playerAnimations = GetComponent<PlayerAnimations>();
         count = 0;
         SetCountText();
+        attack = GameObject.Find("Attack");
+        attack.SetActive(true);
     }
 
     // Update is called once per frame
@@ -70,14 +73,14 @@ public class PlayerMovement : MonoBehaviour
                 moveDirection.y = jumpFactor * Time.deltaTime;
             }
             //doubleJump Sprung
-            if(jump && doublejump && !characterController.isGrounded)
+            if (jump && doublejump && !characterController.isGrounded)
             {
                 moveDirection.y = jumpFactor * Time.deltaTime;
                 doublejump = false;
             }
         }
         //Nur wenn der Player in der Luft ist soll gravity gelten
-        if(!characterController.isGrounded) moveDirection.y -= gravity * Time.deltaTime;
+        if (!characterController.isGrounded) moveDirection.y -= gravity * Time.deltaTime;
         moveDirection.x = velocity * Time.deltaTime;    //Player bewegung
         //Blickrichtung
         if (velocity > 0)
@@ -120,17 +123,30 @@ public class PlayerMovement : MonoBehaviour
         //Attack animation
         if (attackR)
         {
-            Debug.Log("ATTACK-RIGHT");
             playerAnimations.currAnimation = PlayerAnimations.AniType.attackRight;
+
+
+            attackposition = moveDirection;
+            attackposition.x += 1;
+            attack.transform.position = attackposition;
+            StartCoroutine(WaitSecounds());
+
+
             playerAnimations.speed = 0;
             StartCoroutine(WaitSecounds());
+            //attackposition.y = 20;
+            //attack.transform.position = attackposition;
         }
         if (attackL)
         {
-            Debug.Log("ATTACK-Left");
             playerAnimations.currAnimation = PlayerAnimations.AniType.attackLeft;
             playerAnimations.speed = 0;
+            //attackposition = moveDirection;
+            //attackposition.x -= 2;
+            //attack.transform.position = attackposition;
             StartCoroutine(WaitSecounds());
+            //attackposition.y += 20;
+            //attack.transform.position = attackposition;
         }
     }
     IEnumerator WaitSecounds()
