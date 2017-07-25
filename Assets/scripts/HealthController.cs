@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class HealthController : MonoBehaviour
 {
     public float health = 10;
-    public float seconds = 0.05f;
+    public float seconds = 0.04f;
     public int life = 3;
+
+    bool isHit = false;
 
     public Text showHealth;
 
@@ -26,23 +28,27 @@ public class HealthController : MonoBehaviour
 
     public void DamageTaken(float damage)
     {
-        if (health > 0)
+        if (!isHit)
         {
-            health -= damage;
-            ShowHealth();
-            if (health <= 0)
+            isHit = true;
+            if (health > 0)
             {
-                if (life > 0)
+                health -= damage;
+                ShowHealth();
+                if (health <= 0)
                 {
-                    life--;
-                    RestartLevel();
+                    if (life > 0)
+                    {
+                        life--;
+                        RestartLevel();
+                    }
+                    else
+                    {
+                        //Game Over
+                    }
                 }
-                else
-                {
-                    //Game Over
-                }
+                StartCoroutine(DamageEffect());
             }
-            StartCoroutine(DamageEffect());
         }
     }
 
@@ -59,13 +65,14 @@ public class HealthController : MonoBehaviour
     IEnumerator DamageEffect()
     {
         Renderer rend = GetComponent<Renderer>();
-        for (int i = 4; i > 0; i--) //Schleife fürs Blinken bei Schaden
+        for (int i = 3; i > 0; i--) //Schleife fürs Blinken bei Schaden
         {
             rend.enabled = false;
             yield return new WaitForSeconds(seconds);
             rend.enabled = true;
             yield return new WaitForSeconds(seconds);
         }
+        isHit = false;
     }
 
     void ShowHealth()
