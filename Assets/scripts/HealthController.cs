@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
-    public float health = 10;
+    public float maxHealth = 10;
+    public float currentHealth;
     public float seconds = 0.04f;
     public int life = 3;
 
@@ -17,6 +18,7 @@ public class HealthController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        currentHealth = maxHealth;
         ShowHealth();
     }
 
@@ -31,11 +33,11 @@ public class HealthController : MonoBehaviour
         if (!isHit)
         {
             isHit = true;
-            if (health > 0)
+            if (currentHealth > 0)
             {
-                health -= damage;
+                currentHealth -= damage;
                 ShowHealth();
-                if (health <= 0)
+                if (currentHealth <= 0)
                 {
                     if (life > 0)
                     {
@@ -54,9 +56,9 @@ public class HealthController : MonoBehaviour
 
     void RestartLevel()
     {
-        Application.LoadLevel(Application.loadedLevel); //Wir nehmen ersmal das hier -> Licht geht nicht aus beim Restart
+        //Application.LoadLevel(Application.loadedLevel); //Wir nehmen ersmal das hier -> Licht geht nicht aus beim Restart
 
-        //SceneManager.LoadScene("main", LoadSceneMode.Single);
+        SceneManager.LoadScene("main", LoadSceneMode.Single);
 
 
         //UnityEngine.SceneManagement.SceneManager.LoadScene();
@@ -75,8 +77,8 @@ public class HealthController : MonoBehaviour
         isHit = false;
     }
 
-    void ShowHealth()
+    public void ShowHealth()
     {
-        showHealth.text = "Leben: " + health;
+        showHealth.text = "Leben: " + currentHealth + "/" + maxHealth;
     }
 }
