@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     bool lookRight = true;
     bool jump = false;
     bool doublejump = true;
+    bool attackR = false;
+    bool attackL = false;
 
     float velocity;
     public float gravity = 1;
@@ -48,6 +50,14 @@ public class PlayerMovement : MonoBehaviour
             jump = true;
         else
             jump = false;
+        if (UnityEngine.Input.GetKeyDown(KeyCode.K))    //attackRechts gedrückt?     
+            attackR = true;
+        else
+            attackR = false;
+        if (UnityEngine.Input.GetKeyDown(KeyCode.J))    //attackLinks gedrückt?     
+            attackL = true;
+        else
+            attackL = false;
     }
 
     public void Moving()

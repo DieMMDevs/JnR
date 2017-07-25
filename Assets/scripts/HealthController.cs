@@ -59,26 +59,13 @@ public class HealthController : MonoBehaviour
     IEnumerator DamageEffect()
     {
         Renderer rend = GetComponent<Renderer>();
-        for (int i = 4; i > 0; i--)
+        for (int i = 4; i > 0; i--) //Schleife fürs Blinken bei Schaden
         {
             rend.enabled = false;
             yield return new WaitForSeconds(seconds);
             rend.enabled = true;
             yield return new WaitForSeconds(seconds);
         }
-        /*
-        rend.enabled = false;
-        yield return new WaitForSeconds(seconds);
-        rend.enabled = true;
-        yield return new WaitForSeconds(seconds);
-        rend.enabled = false;
-        yield return new WaitForSeconds(seconds);
-        rend.enabled = true;
-        yield return new WaitForSeconds(seconds);
-        rend.enabled = false;
-        yield return new WaitForSeconds(seconds);
-        rend.enabled = true; 
-        */
     }
 
     void ShowHealth()
