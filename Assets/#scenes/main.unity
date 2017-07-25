@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 814056dcd66814d498d4f681ad6b349c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagevalue: 1
+  damagevalue: 10
   tags: Player
 --- !u!1 &1694015360
 GameObject:
@@ -1950,7 +1950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d820b072409fb42b01481881823867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 10
   seconds: 0.25
   life: 3
   showHealth: {fileID: 1694015362}
