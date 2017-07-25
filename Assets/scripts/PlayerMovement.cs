@@ -53,12 +53,8 @@ public class PlayerMovement : MonoBehaviour
             jump = false;
         if (UnityEngine.Input.GetKeyDown(KeyCode.K))    //attackRechts gedrückt?     
             attackR = true;
-        else
-            attackR = false;
         if (UnityEngine.Input.GetKeyDown(KeyCode.J))    //attackLinks gedrückt?     
             attackL = true;
-        else
-            attackL = false;
     }
 
     public void Moving()
@@ -92,22 +88,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetAnimation()
     {
-        //Attack animation
-        if (attackR)
-        {
-            Debug.Log("ATTACK-RIGHT");
-            playerAnimations.currAnimation = PlayerAnimations.AniType.attackRight;
-            playerAnimations.speed = 0;
-            StartCoroutine(WaitSecounds());
-        }
-        if (attackL)
-        {
-            Debug.Log("ATTACK-Left");
-            playerAnimations.currAnimation = PlayerAnimations.AniType.attackLeft;
-            playerAnimations.speed = 0;
-            StartCoroutine(WaitSecounds());
-        }
-
         //Laufrichtungs-Animation setzten und im Inneren Jump-Animation abfrage
         if (velocity > 0)
         {
@@ -133,13 +113,29 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerAnimations.currAnimation = PlayerAnimations.AniType.idleLeft;
                 if (!characterController.isGrounded) playerAnimations.currAnimation = PlayerAnimations.AniType.jumpLeft;
-            } 
+            }
         }
-        
+        //Attack animation
+        if (attackR)
+        {
+            Debug.Log("ATTACK-RIGHT");
+            playerAnimations.currAnimation = PlayerAnimations.AniType.attackRight;
+            playerAnimations.speed = 0;
+            StartCoroutine(WaitSecounds());
+        }
+        if (attackL)
+        {
+            Debug.Log("ATTACK-Left");
+            playerAnimations.currAnimation = PlayerAnimations.AniType.attackLeft;
+            playerAnimations.speed = 0;
+            StartCoroutine(WaitSecounds());
+        }
     }
     IEnumerator WaitSecounds()
     {
         yield return new WaitForSeconds(waitSecounds);
+        attackR = false;
+        attackL = false;
         playerAnimations.speed = 10;
     }
 
