@@ -8,7 +8,10 @@ public class PlayerMovement : MonoBehaviour
     bool lookRight = true;
     bool jump = false;
     bool doublejump = true;
+    bool attackR = false;
+    bool attackL = false;
 
+    float waitSecounds = 0.25f;
     float velocity;
     public float gravity = 1;
     public float speed = 5;
@@ -48,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
             jump = true;
         else
             jump = false;
+        if (UnityEngine.Input.GetKeyDown(KeyCode.K))    //attackRechts gedrückt?     
+            attackR = true;
+        if (UnityEngine.Input.GetKeyDown(KeyCode.J))    //attackLinks gedrückt?     
+            attackL = true;
     }
 
     public void Moving()
@@ -106,9 +113,30 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerAnimations.currAnimation = PlayerAnimations.AniType.idleLeft;
                 if (!characterController.isGrounded) playerAnimations.currAnimation = PlayerAnimations.AniType.jumpLeft;
-            } 
+            }
         }
-        
+        //Attack animation
+        if (attackR)
+        {
+            Debug.Log("ATTACK-RIGHT");
+            playerAnimations.currAnimation = PlayerAnimations.AniType.attackRight;
+            playerAnimations.speed = 0;
+            StartCoroutine(WaitSecounds());
+        }
+        if (attackL)
+        {
+            Debug.Log("ATTACK-Left");
+            playerAnimations.currAnimation = PlayerAnimations.AniType.attackLeft;
+            playerAnimations.speed = 0;
+            StartCoroutine(WaitSecounds());
+        }
+    }
+    IEnumerator WaitSecounds()
+    {
+        yield return new WaitForSeconds(waitSecounds);
+        attackR = false;
+        attackL = false;
+        playerAnimations.speed = 10;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -1707,6 +1707,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 95437e4387280c74abe4982688dd2468, type: 3}
   jumpAnimationRight: []
   jumpAnimationLeft: []
+  attackAnimationRight: []
+  attackAnimationLeft: []
   speed: 10
   currAnimation: 3
 --- !u!114 &1889478568
@@ -1915,6 +1917,10 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 248ffc023d368c046a11b843c055d4b6, type: 3}
   jumpAnimationLeft:
   - {fileID: 2800000, guid: 8f7777be80c5d1a4d8bd9fc615f7732b, type: 3}
+  attackAnimationRight:
+  - {fileID: 2800000, guid: e9df960f47effbf4583a0ad60d86f105, type: 3}
+  attackAnimationLeft:
+  - {fileID: 2800000, guid: 59959a9421763ae4e8db84ca3ee05dc5, type: 3}
   speed: 10
   currAnimation: 1
 --- !u!143 &2057570031
