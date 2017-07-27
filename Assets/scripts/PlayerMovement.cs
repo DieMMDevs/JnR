@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     CharacterController characterController;
     PlayerAnimations playerAnimations;
     GameObject attack;
+    GameObject player;
     Vector3 attackposition = Vector3.zero;
     // Use this for initialization
     void Start()
@@ -43,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
         SetCountText();
         attack = GameObject.Find("Attack");
         attack.SetActive(true);
+        attack.renderer.
+        player = GameObject.Find("Player");
         backgroundObject = GameObject.Find(background);
         bgPosition = backgroundObject.GetComponent<BackgroundPosition>();
     }
@@ -134,29 +137,20 @@ public class PlayerMovement : MonoBehaviour
         if (attackR)
         {
             playerAnimations.currAnimation = PlayerAnimations.AniType.attackRight;
-
-
-            attackposition = moveDirection;
-            attackposition.x += 1;
+            attackposition = player.transform.position;
+            attackposition.x += 0.5f;
             attack.transform.position = attackposition;
-            StartCoroutine(WaitSecounds());
-
-
             playerAnimations.speed = 0;
             StartCoroutine(WaitSecounds());
-            //attackposition.y = 20;
-            //attack.transform.position = attackposition;
         }
         if (attackL)
         {
             playerAnimations.currAnimation = PlayerAnimations.AniType.attackLeft;
             playerAnimations.speed = 0;
-            //attackposition = moveDirection;
-            //attackposition.x -= 2;
-            //attack.transform.position = attackposition;
+            attackposition = player.transform.position;
+            attackposition.x -= 0.5f;
+            attack.transform.position = attackposition;
             StartCoroutine(WaitSecounds());
-            //attackposition.y += 20;
-            //attack.transform.position = attackposition;
         }
     }
     IEnumerator WaitSecounds()
@@ -164,6 +158,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(waitSecounds);
         attackR = false;
         attackL = false;
+        attackposition.y = 20;
+        attack.transform.position = attackposition;
         playerAnimations.speed = 10;
     }
 
