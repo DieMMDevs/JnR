@@ -120,14 +120,12 @@ public class PlayerMovement : MonoBehaviour
         //Attack animation
         if (attackR)
         {
-            Debug.Log("ATTACK-RIGHT");
             playerAnimations.currAnimation = PlayerAnimations.AniType.attackRight;
             playerAnimations.speed = 0;
             StartCoroutine(WaitSecounds());
         }
         if (attackL)
         {
-            Debug.Log("ATTACK-Left");
             playerAnimations.currAnimation = PlayerAnimations.AniType.attackLeft;
             playerAnimations.speed = 0;
             StartCoroutine(WaitSecounds());
