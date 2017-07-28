@@ -44,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
         SetCountText();
         attack = GameObject.Find("Attack");
         attack.SetActive(true);
-        attack.renderer.
         player = GameObject.Find("Player");
         backgroundObject = GameObject.Find(background);
         bgPosition = backgroundObject.GetComponent<BackgroundPosition>();
