@@ -18,15 +18,22 @@ public class PlayerMovement : MonoBehaviour
     public float jumpFactor = 20;
     private int count;
 
+    string background = "Background";
+
     public Text countText;
 
     public GameObject otherGameObject;
+    public GameObject backgroundObject;
+    BackgroundPosition bgPosition;
+
 
     Vector3 moveDirection = Vector3.zero;
     HealthController healthController;
     CharacterController characterController;
     PlayerAnimations playerAnimations;
-
+    GameObject attack;
+    GameObject player;
+    Vector3 attackposition = Vector3.zero;
     // Use this for initialization
     void Start()
     {
@@ -35,6 +42,12 @@ public class PlayerMovement : MonoBehaviour
         playerAnimations = GetComponent<PlayerAnimations>();
         count = 0;
         SetCountText();
+        attack = GameObject.Find("Attack");
+        attack.SetActive(true);
+        attack.renderer.
+        player = GameObject.Find("Player");
+        backgroundObject = GameObject.Find(background);
+        bgPosition = backgroundObject.GetComponent<BackgroundPosition>();
     }
 
     // Update is called once per frame
@@ -70,14 +83,14 @@ public class PlayerMovement : MonoBehaviour
                 moveDirection.y = jumpFactor * Time.deltaTime;
             }
             //doubleJump Sprung
-            if(jump && doublejump && !characterController.isGrounded)
+            if (jump && doublejump && !characterController.isGrounded)
             {
                 moveDirection.y = jumpFactor * Time.deltaTime;
                 doublejump = false;
             }
         }
         //Nur wenn der Player in der Luft ist soll gravity gelten
-        if(!characterController.isGrounded) moveDirection.y -= gravity * Time.deltaTime;
+        if (!characterController.isGrounded) moveDirection.y -= gravity * Time.deltaTime;
         moveDirection.x = velocity * Time.deltaTime;    //Player bewegung
         //Blickrichtung
         if (velocity > 0)
@@ -96,12 +109,15 @@ public class PlayerMovement : MonoBehaviour
             playerAnimations.currAnimation = PlayerAnimations.AniType.runRight;
             if (!characterController.isGrounded)
                 playerAnimations.currAnimation = PlayerAnimations.AniType.jumpRight;
+            bgPosition.playerPositionScroll -= 0.02f;
         }
         if (velocity < 0)
         {
             playerAnimations.currAnimation = PlayerAnimations.AniType.runLeft;
             if (!characterController.isGrounded)
                 playerAnimations.currAnimation = PlayerAnimations.AniType.jumpLeft;
+
+            bgPosition.playerPositionScroll += 0.02f;
         }
         //Blickrichtungs-Animation setzten und im Inneren Jump-Animation abfrage
         if (velocity == 0)
@@ -121,6 +137,9 @@ public class PlayerMovement : MonoBehaviour
         if (attackR)
         {
             playerAnimations.currAnimation = PlayerAnimations.AniType.attackRight;
+            attackposition = player.transform.position;
+            attackposition.x += 0.5f;
+            attack.transform.position = attackposition;
             playerAnimations.speed = 0;
             StartCoroutine(WaitSecounds());
         }
@@ -128,6 +147,9 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimations.currAnimation = PlayerAnimations.AniType.attackLeft;
             playerAnimations.speed = 0;
+            attackposition = player.transform.position;
+            attackposition.x -= 0.5f;
+            attack.transform.position = attackposition;
             StartCoroutine(WaitSecounds());
         }
     }
@@ -136,6 +158,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(waitSecounds);
         attackR = false;
         attackL = false;
+        attackposition.y = 20;
+        attack.transform.position = attackposition;
         playerAnimations.speed = 10;
     }
 

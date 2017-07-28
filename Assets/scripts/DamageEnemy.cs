@@ -14,7 +14,7 @@ public class DamageEnemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        playerObject = GameObject.Find("Player");
+        playerObject = GameObject.Find(tags);
         healthcontroller = playerObject.GetComponent<HealthController>();
     }
 
