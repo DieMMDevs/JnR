@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
     public Text countText;
 
     public GameObject otherGameObject;
-    public GameObject backgroundObject;
-    BackgroundPosition bgPosition;
+    //public GameObject backgroundObject;
+    //BackgroundPosition bgPosition;
 
 
     Vector3 moveDirection = Vector3.zero;
@@ -45,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
         attack = GameObject.Find("Attack");
         attack.SetActive(true);
         player = GameObject.Find("Player");
-        backgroundObject = GameObject.Find(background);
-        bgPosition = backgroundObject.GetComponent<BackgroundPosition>();
+        //backgroundObject = GameObject.Find(background);
+        //bgPosition = backgroundObject.GetComponent<BackgroundPosition>();
     }
 
     // Update is called once per frame
@@ -108,15 +108,12 @@ public class PlayerMovement : MonoBehaviour
             playerAnimations.currAnimation = PlayerAnimations.AniType.runRight;
             if (!characterController.isGrounded)
                 playerAnimations.currAnimation = PlayerAnimations.AniType.jumpRight;
-            bgPosition.playerPositionScroll -= 0.02f;
         }
         if (velocity < 0)
         {
             playerAnimations.currAnimation = PlayerAnimations.AniType.runLeft;
             if (!characterController.isGrounded)
                 playerAnimations.currAnimation = PlayerAnimations.AniType.jumpLeft;
-
-            bgPosition.playerPositionScroll += 0.02f;
         }
         //Blickrichtungs-Animation setzten und im Inneren Jump-Animation abfrage
         if (velocity == 0)
@@ -152,6 +149,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(WaitSecounds());
         }
     }
+    
     IEnumerator WaitSecounds()
     {
         yield return new WaitForSeconds(waitSecounds);

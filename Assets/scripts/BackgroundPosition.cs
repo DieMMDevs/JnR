@@ -5,17 +5,21 @@ using UnityEngine;
 public class BackgroundPosition : MonoBehaviour
 {
     GameObject playerObject;
-    string tags = "Player";
-    public float playerPosition, y, z;
-    public float playerPositionScroll = 0, yScroll = 0, zScroll = 0;
+    GameObject background;
+    GameObject background2;
+    string tagPlayer = "Player";
+    string tagBG = "Background";
+    string tagBG2 = "Background2";
+    public float x, y, z, z2;
+    public float shift = 1.22f, shift2 = 2f;
 
     // Use this for initialization
     void Start()
     {
-        playerObject = GameObject.Find(tags);
-        playerPosition = playerObject.transform.position.x;
-        y = 6.125f;
-        z = 2.05f;
+        playerObject = GameObject.Find(tagPlayer);
+        background = GameObject.Find(tagBG);
+        background2 = GameObject.Find(tagBG2);
+        z = 2; z2 = 1;
     }
 
     // Update is called once per frame
@@ -26,10 +30,12 @@ public class BackgroundPosition : MonoBehaviour
     }
     void PlayerPosition()
     {
-        playerPosition = playerObject.transform.position.x;
+        x = playerObject.transform.position.x;
+        y = playerObject.transform.position.y;
     }
     void SetBackgroundPosition()
     {
-        this.transform.position = new Vector3(playerPosition + playerPositionScroll, y + yScroll, z + zScroll);
+        background.transform.position = new Vector3(x / shift, y / shift + 4, z);
+        background2.transform.position = new Vector3(x / shift2, y / shift2 + 8, z2);
     }
 }
